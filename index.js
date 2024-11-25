@@ -1,32 +1,14 @@
-const str = 'Одинарные кавычки тоже подойдут'
-const countLetter = {}
 
-for (let letter of str) {
-  letter = letter.toLowerCase()
-  countLetter[letter] = (countLetter[letter] || 0) + 1
+const addZero = (number) => String(number).length === 1 ? `0${number}` : String(number)
 
+const getDateFormat = (date, separator ='.') => {
+  if (!(date instanceof Date)) {
+    return 'Первый параметр должен быть экземпляром класса Date!'}
+
+    const todayMs = date.getDate()
+    const monthIndex = date.getMonth()
+    const year = date.getFullYear()
+    return [todayMs, monthIndex +1, year].map(addZero).join(separator)
+    
 }
-
-let bestLetter = ''
-let maxCount = 0
-
-for (let letter in countLetter) {
-  if (countLetter[letter] > maxCount) {
-    maxCount = countLetter[letter]
-    bestLetter = letter
-  }
-}
-
-alert(`Самая частая буква: ${bestLetter}, количество: ${maxCount}`);
-
-
-/*
-const str2 = 'Одинарные кавычки тоже подойдут';
-const charCount = {};
-
-for (let char of str2) {
-  char = char.toLowerCase();
-  charCount[char] = (charCount[char] || 0) + 1; // наглядно
-  console.log(`charCount после "${char}":`, charCount);
-}
-*/
+console.log(getDateFormat(new Date('5, 5, 2024')))
